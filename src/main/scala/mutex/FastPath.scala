@@ -16,8 +16,9 @@ class FastPath(myLock: Lock) extends Lock {
     while (y != - 1) {}  // Is the lock free?
     y = i                // Me again?
     if (x != i) {        // Am I still here? 
-      myLock.lock()      // Take the regular lock
+      myLock.lock()      // Take the regular lock (slow path)
     }
+                         // Take the fast path
   }
 
   override def unlock() = {
