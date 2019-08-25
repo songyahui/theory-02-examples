@@ -8,7 +8,7 @@ import util.ThreadID
 class BouncerTest extends FunSpec with Matchers {
   val N = 20
 
-  class MyThread(b: Bouncer) extends Thread {
+  class BouncerThread(b: Bouncer) extends Thread {
     var result: Option[Value] = None
 
     override def run() = {
@@ -22,8 +22,8 @@ class BouncerTest extends FunSpec with Matchers {
       ThreadID.reset()
       val bouncer = new Bouncer
       
-      // Fill the array with many threads visiting the bouncer
-      val threads = Array.fill(N)(new MyThread(bouncer))
+      // Lazily fill the array with many threads visiting the bouncer
+      val threads = Array.fill(N)(new BouncerThread(bouncer))
 
       // Start all threads
       for (i <- 0 until N) {
