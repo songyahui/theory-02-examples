@@ -18,7 +18,7 @@ class BouncerTest extends FunSpec with Matchers {
 
 
   describe(s"Bouncer class") {
-    it("should return at most one STOP for any number of threads") {
+    it("should satisfy some statements") {
       ThreadID.reset()
       val bouncer = new Bouncer
       
@@ -35,21 +35,21 @@ class BouncerTest extends FunSpec with Matchers {
         threads(i).join()
       }
       
-      // Get all results
-      val results = threads.toList.map(_.result) 
+      // Get all results from the corresponding "Some" wrappers
+      // Underscore "_" is a shortcut for a one-argument function
+      // equivalently `threads.toList.map(x => x.result.get)`
+      val results = threads.toList.map(_.result.get) 
       
-      for (r <- results) println(r.get)
+      // for (r <- results) println(r)
 
-      // At most one STOP
-      assert(results.count(_.get == STOP) <= 1)
+      // At most one STOP amongst the results
+      assert(results.count(_ == STOP) <= 1)
 
       // At most (N - 1) RIGHT
-      assert(results.count(_.get == RIGHT) <= N)
+      assert(results.count(_ == RIGHT) <= N)
 
       // At most (N - 1) DOWN
-      assert(results.count(_.get == DOWN) < N)
-
-
+      assert(results.count(_ == DOWN) < N)
       
     }
   }
