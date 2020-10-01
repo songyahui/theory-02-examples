@@ -1,6 +1,6 @@
 # Theory-02 Examples
 
-Code for the Theory 2 homework assignment
+An Amazing Code for the Theory 2 homework assignment
 
 ## Building and Running
 
@@ -12,7 +12,7 @@ Code for the Theory 2 homework assignment
 
 ### Building and Testing the Project
 
-To compile and run the entire test suite (and see some cool synthesis results), execute the following command in the terminal from the root folder of the project:
+To compile and run the entire test suite (and see some cool and amazing synthesis results), execute the following command in the terminal from the root folder of the project:
 
 ```
 sbt test
